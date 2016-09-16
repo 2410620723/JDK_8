@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<meta charset="utf-8">
+<title>canvas绘制验证码</title>
+<script type="text/javascript" src="../webgl/js/jquery-3.0.js"></script>
+<style>
+@charset "utf-8";
+/* CSS Document */
+body {
+    background: url(images/img10.jpg) no-repeat fixed;
+}
+ 
+body,form,ul,ol,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,table,fieldset,hr,div {
+    margin: 0;
+    padding: 0;
+}
+ 
+body,input,select,textarea {
+    color: #000;
+    font: 12px/1.8 "微软雅黑", Arial, Helvetica, sans-serif;
+}
+ 
+img {
+    border: 0;
+    vertical-align: middle;
+}
+ 
+table {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+ 
+ul,ol,li {
+    list-style-type: none;
+}
+ 
+a {
+    color: #000;
+    outline: none;
+    text-decoration: none;
+}
+ 
+a:hover {
+    text-decoration: underline;
+}
+ 
+.contain {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 200px;
+}
+</style>
+<body>
+    <div class="contain">
+        <canvas id="myCanvas" height="300px" width="500px">your browser does not support the canvas tag </canvas>
+        <br /> <input type="text">
+        <button onClick="pass()">提交</button>
+    </div>
+</body>
+<script type="text/javascript">
+    var canvas = $("#myCanvas").get(0);
+    var _canvas = $("#myCanvas").get(0).getContext("2d");
+    var return_str = "";
+    var _ifstart = false;
+    var _B_x = 0;
+    var _B_y = 0;
+    function can_click() {
+ 
+    };
+    function pass() {
+        var _val = $(":text:eq(0)").val();
+        if (_val == return_str) {
+            alert('您通过验证了！');
+        } else {
+            alert('您输入的验证码不正确！');
+        }
+        ;
+    }
+    function start() {
+        try {
+            function drawscreen() {
+                _canvas.fillStyle = "#ffffaa";
+                _canvas.fillRect(0, 0, 500, 300);
+                _canvas.strokeStyle = "#000";
+                _canvas.strokeRect(5, 5, 490, 290);
+            }
+            ;
+            function write_text(_str) {
+                _canvas.fillStyle = "#000000";
+                _canvas.font = "20px _sans";
+                _canvas.textBaseline = "top";
+                _canvas.fillText(_str, 195, 80);
+            }
+            ;
+            function getabc() {
+                var _str = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,0,1,2,3,4,5,6,7,8,9";
+                var _str_array = _str.split(",");
+                return_str = "";
+                for (i = 0; i < 4; i++) {
+                    var _rnd = Math.floor(Math.random() * _str_array.length);
+                    return_str += _str_array[_rnd];
+                }
+                ;
+            }
+            ;
+            drawscreen();
+            getabc();
+            write_text(return_str);
+        } catch (e) {
+            alert(e);
+        }
+    };
+    $(document).ready(function(e) {
+        start();
+    });
+    $(function(){
+    	$("#myCanvas").click(function(){
+    		start();
+    	});
+    });
+</script>
+</html>
