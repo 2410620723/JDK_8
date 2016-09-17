@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test SHA1</title>
+</head>
+<body>
+<input id="testVal"><input type="button" value="提交">
+</body>
+<script type="text/javascript" src="../webgl/js/jquery-3.0.js"></script>
+<script src="sha1.js"></script>
+<script>
+ $(function(){
+	 $(":button:eq(0)").click(function(){
+		var text = $("#testVal").val();
+		alert(hex_sha1(text));
+	});
+ })
+</script>
+</html>

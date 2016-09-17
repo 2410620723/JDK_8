@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="verificationCodeValue" /><button id="verificationCodeBtn">验证</button>
+    <script type="text/javascript" src="../webgl/js/jquery-3.0.js"></script>
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript">
+    var verificationCode="";
+    function createVerificationCode (w,h){        
+        var codeLength = 4;
+        var code=[];
+        var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',  
+         'S','T','U','V','W','X','Y','Z');
+         for(var i = 0; i < codeLength; i++) {
+            var index = Math.floor(Math.random()*36);
+            code.push(random[index]);
+        }
+        verificationCode = $.md5(code.join(""));
+        console.log(verificationCode);
+        var colors = ["red","green","brown","blue","orange","purple","black"]; 
+
+        var codeCanvas = document.createElement("canvas");
+            codeCanvas.width = w;
+            codeCanvas.height= h;
+        var ctx = codeCanvas.getContext("2d");
+        ctx.font = "18px Arial";
+        var cx = (w-20-codeLength*4)/(codeLength-1),cy = h/2+18/2;
+        
+        var deg,cos,sin,dg;
+        for(var j=0;j<codeLength;j++){
+            ctx.fillStyle =colors[Math.floor(Math.random()*colors.length)];
+            //产生一个正负30度以内的角度值以及一个用于变形的dg值
+            dg = Math.random()*4.5/10;
+            deg = Math.floor(Math.random()*60);
+            deg = deg>30?(30-deg):deg;
+            cos = Math.cos(deg*Math.PI/180);
+            sin = Math.sin(deg*Math.PI/180);
+            ctx.setTransform(cos,sin+dg,-sin+dg,cos,(j?cx:10)*j+10,cy);
+            ctx.fillText(code[j], 0,0);
+            console.log(sin);
+        }
+        var img = document.getElementById("verificationCodeImg");
+        if(!img){
+            img = new Image();
+            img.id="verificationCodeImg";
+            img.onload= function(){
+                document.body.appendChild(img);
+            }
+        }
+        img.src=codeCanvas.toDataURL("image/png");
+        
+    }
+   window.onload=function(){
+           createVerificationCode(120,40);
+           document.getElementById("verificationCodeBtn").onclick=function(){
+               var vlu = document.getElementById("verificationCodeValue").value;
+               if(vlu.length!=4){
+                   alert("请输入正确的验证码");
+               }else if($.md5(vlu.toUpperCase())===verificationCode){
+                   alert("正确的验证码！");
+               }else{
+                   alert("错误的验证码！");
+                   createVerificationCode(120,40);
+               }
+           }
+           
+   }
+   $(function(){
+	   $("#verificationCodeImg").click(function(){
+        	   alert(123);
+    		   createVerificationCode(120,40);
+    	   });
+   })
+    </script>
+</body>
+</html>

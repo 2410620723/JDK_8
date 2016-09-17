@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test MD5</title>
+</head>
+<body>
+<input id="testVal"><input type="button" value="提交">
+</body>
+<script type="text/javascript" src="../webgl/js/jquery-3.0.js"></script>
+<script src="md5.js"></script>
+<script>
+$(function(){
+	$(":button:eq(0)").click(function(){
+		var text = $("#testVal").val();
+		alert($.md5(text));
+	});
+})
+</script>
+</html>

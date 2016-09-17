@@ -6,10 +6,7 @@
 <style>
 @charset "utf-8";
 /* CSS Document */
-body {
-    background: url(images/img10.jpg) no-repeat fixed;
-}
- 
+
 body,form,ul,ol,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,table,fieldset,hr,div {
     margin: 0;
     padding: 0;
@@ -22,7 +19,7 @@ body,input,select,textarea {
  
 img {
     border: 0;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
  
 table {
@@ -47,14 +44,17 @@ a:hover {
 }
  
 .contain {
-    width: 500px;
+    width: 150px;
     margin: 0 auto;
-    padding-top: 200px;
+    padding-top: 50px;
+}
+#myCanvas{
+	color:rgba(100,100,100,0.5)
 }
 </style>
 <body>
     <div class="contain">
-        <canvas id="myCanvas" height="300px" width="500px">your browser does not support the canvas tag </canvas>
+        <canvas id="myCanvas" height="50px" width="100px">your browser does not support the canvas tag </canvas>
         <br /> <input type="text">
         <button onClick="pass()">提交</button>
     </div>
@@ -82,16 +82,16 @@ a:hover {
         try {
             function drawscreen() {
                 _canvas.fillStyle = "#ffffaa";
-                _canvas.fillRect(0, 0, 500, 300);
+                _canvas.fillRect(0, 0, 80, 40);//控制验证码颜色的位置
                 _canvas.strokeStyle = "#000";
-                _canvas.strokeRect(5, 5, 490, 290);
+                _canvas.strokeRect(5, 5, 78, 38);//控制验证码边框的位置
             }
             ;
             function write_text(_str) {
                 _canvas.fillStyle = "#000000";
                 _canvas.font = "20px _sans";
                 _canvas.textBaseline = "top";
-                _canvas.fillText(_str, 195, 80);
+                _canvas.fillText(_str, 22, 13);//控制文字的位置
             }
             ;
             function getabc() {
