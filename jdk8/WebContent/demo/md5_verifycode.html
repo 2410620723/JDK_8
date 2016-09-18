@@ -49,6 +49,9 @@
             img.onload= function(){
                 document.body.appendChild(img);
             }
+            img.onclick=function(){
+            	createVerificationCode(120,40);
+            }
         }
         img.src=codeCanvas.toDataURL("image/png");
         
@@ -68,12 +71,7 @@
            }
            
    }
-   $(function(){
-	   $("#verificationCodeImg").click(function(){
-        	   alert(123);
-    		   createVerificationCode(120,40);
-    	   });
-   })
+   
     </script>
 </body>
 </html>
