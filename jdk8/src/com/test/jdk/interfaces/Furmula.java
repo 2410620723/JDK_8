@@ -8,7 +8,12 @@ package com.test.jdk.interfaces;
 public interface Furmula {
 	double calculator(int a);
 	
+	//JDK8开始，接口中可以定义默认方法
 	default double sqrt(int a){
 		return Math.sqrt(a);
+	}
+	//JDK8开始，接口中可以定义静态方法，实现接口的类或者子接口不会集成接口的静态方法
+	static int staticMethod(){
+		return 0;
 	}
 }

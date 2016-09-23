@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5之FileReader的使用</title>
+</head>
+<body>
+ <input type="file" name="file" onchange="imagePreview(this)" />
+ <progress id="progressFile" max="100" value=""></progress>
+ <img id="portrait" src="" width="70" height="75">
+</body>
+<script>
+	function imagePreview(source){
+		var file = source.files[0];
+		var progress = document.querySelector("#progressFile");
+		
+		if(window.FileReader){
+			if(!/image\/\w+/.test(file.type)){  
+			    alert("请确保文件为图像类型");  
+			    return false;  
+			}else{
+				var fr = new FileReader();
+				
+				fr.onloadend = function(e){
+					var total = e.total;
+					var loaded = e.loaded;
+					document.querySelector("#portrait").src=e.target.result;
+					progress.value = (loaded/total)*progress.max;
+				};
+				fr.readAsDataURL(file);
+			}
+		}
+	}
+</script>
+</html>
