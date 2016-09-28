@@ -1,6 +1,6 @@
 package com.test.jdk.bean;
 
-public class Person {
+public class Person implements Cloneable {
 	public String name;
 	public int age;
 	public Person(String name, int age) {
@@ -27,6 +27,10 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", age=" + age + "]";
+	}
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 	
 }
