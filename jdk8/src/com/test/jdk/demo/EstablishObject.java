@@ -28,22 +28,6 @@ public class EstablishObject {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		
-		/*
-		 * 3.调用对象的clone()方法。
-		 */
-		try {
-			Person person3 = (Person) person1.clone();
-			person3.setName("Hello");
-			person3.setAge(20);
-			System.out.println("person3:"+person3.toString());
-		} catch (CloneNotSupportedException e1) {
-			e1.printStackTrace();
-		}
-		
-		/*
-		 * 4.反序列化
-		 */
 		Class<?> c = null;
 		Person person4 = null;
 		try {
@@ -61,5 +45,22 @@ public class EstablishObject {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
+		
+		/*
+		 * 3.调用对象的clone()方法。
+		 */
+		try {
+			Person person3 = (Person) person1.clone();
+			person3.setName("Hello");
+			person3.setAge(20);
+			System.out.println("person3:"+person3.toString());
+		} catch (CloneNotSupportedException e1) {
+			e1.printStackTrace();
+		}
+		
+		/*
+		 * 4.反序列化
+		 */
+		
 	}
 }
